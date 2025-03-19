@@ -1,0 +1,115 @@
+using System;
+using System.Linq;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        int[] numbers = null;
+
+        while (true)
+        {
+            Console.WriteLine("Please enter a list of integers (comma-separated):");
+            string input = Console.ReadLine();
+            numbers = ParseInput(input);
+
+            if (numbers != null)
+            {
+                break;
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter a valid list of integers.");
+            }
+        }
+
+        while (true)
+        {
+            Console.WriteLine("\nMenu Options:");
+            Console.WriteLine("1. Calculate Median");
+            Console.WriteLine("2. Find Second Largest Element");
+            Console.WriteLine("3. Check for Palindrome Array");
+            Console.WriteLine("4. Rotate Array Left");
+            Console.WriteLine("5. Exit");
+            Console.Write("Choose an option: ");
+            
+            string option = Console.ReadLine();
+            switch (option)
+            {
+                case "1":
+                Console.WriteLine($"Median: {CalculateMedian(numbers)}");
+                break;
+                case "2":
+                Console.WriteLine($"Second Largest Element: {FindSecondLargest(numbers)}");
+                break;
+                case "3":
+                Console.WriteLine($"Is Palindrome: {IsPalindrome(numbers)}");
+                break;
+                case "4":
+                RotateArrayLeft(numbers);
+                Console.WriteLine("Array after rotation: " + string.Join(", ", numbers));
+                break;
+                case "5":
+                Console.WriteLine("Exiting the program.");
+                return;
+                default:
+                Console.WriteLine("Invalid option. Please choose a valid menu option (1-5).\n");
+                break;
+            }
+                
+        }
+    }
+
+    static int[] ParseInput(string input)
+    {
+            // Write your code below
+        try
+        {
+            return input.Split(',').Select(int.Parse).ToArray();
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    static double CalculateMedian(int[] numbers)
+    {
+            // Write your code below
+        Array.Sort(numbers);
+        int n = numbers.Length;
+        if (n % 2 == 1)
+        {
+            return numbers[n / 2];
+        }
+        else
+        {
+            return numbers[n / 2-1] + numbers[n / 2] / 2.0;
+        }
+    }
+
+    static string FindSecondLargest(int[] numbers)
+    {
+            // Write your code below
+            var distinctNumbers = numbers.Distinct().OrderByDescending(x => x).ToArray();
+            return distinctNumbers.Length > 1 ? distinctNumbers[1].ToString() : "No second largest element";
+    }
+
+    static bool IsPalindrome(int[] numbers)
+    {
+            // Write your code below
+         return numbers.SequenceEqual(numbers.Reverse());
+    }
+
+    static void RotateArrayLeft(int[] numbers)
+    {
+            // Write your code below
+        if (numbers.Length > 1)
+            {
+                int first = numbers[0];
+                Array.Copy(numbers, 1, numbers, 0, numbers.Length - 1);
+                numbers[numbers.Length - 1]  = first;
+
+            }
+    }
+}
