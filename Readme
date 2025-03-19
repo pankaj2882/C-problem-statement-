@@ -1,1 +1,20 @@
+Problem Statement 1: Advanced Array Operations
 
+You need to implement a console application that performs advanced operations on an array of integers based on user input. The program should provide a menu using a switch case statement.
+
+Requirements:
+Prompt the user to input a list of integers (comma-separated).
+Present a menu with the following options:
+1. Calculate Median
+2. Find Second Largest Element
+3. Check for Palindrome Array
+4. Rotate Array Left
+5. Exit
+Validate user input for both the array of integers and the menu selection.
+Display appropriate error messages for invalid input.
+
+Detailed Specifications:
+Calculate Median: Output the median of the numbers in the array. If the array has an even number of elements, return the average of the two middle numbers.
+Find Second Largest Element: Output the second largest unique number in the array. If there is no second largest, display a suitable message.
+Check for Palindrome Array: Check if the array is a palindrome (reads the same forward and backward). Output a message indicating whether it is or not.
+Rotate Array Left: Shift all elements of the array to the left by one position. The first element should move to the end of the array. Output the new array.
